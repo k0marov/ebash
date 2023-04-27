@@ -15,8 +15,9 @@ It also has an option to immediately execute the provided .esh file.
 ### Features 
 
 #### Increment operator 
-_increment.esh_
 Example: 
+
+_increment.esh_
 ```
 i=1
 $i++
@@ -24,6 +25,7 @@ echo "i = $i"
 ```
 
 Transpiles to:
+
 _increment.sh_
 ```
 i=1
@@ -35,7 +37,8 @@ And outputs `i = 2`
 
 #### Arithmetic operators syntax
 
-Example: 
+Example:
+
 _arithmetic.esh_
 ```
 a=${{ 2.5 * 6 + cos(0) }} # 15 
@@ -44,6 +47,7 @@ echo "The result is ${{ $a / $b }}"
 ```
 
 Transpiles to:
+
 _arithmetic.sh_
 ```
 a=$(bc<<<" 2.5 * 6 + cos(0) ") # 15 
@@ -56,7 +60,6 @@ And outputs `The result is 3.75`
 ## TODO
 
 - [ ] increment operator `$i++`
-- [ ] complex arithmetic operators syntax `${{ 3^2 / 5 * sin(3.14) }}`
 - [ ] complex arithmetic inequalities `$?{{5/3 >= 2}}`
 - [ ] directly executing the provided .esh file 
 - [ ] transpiling to a file 
