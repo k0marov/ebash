@@ -7,8 +7,10 @@ function transpile {
 
 input_file=$1
 
-if [[ ! -f $input_file ]] 
+if [[ -z $input_file ]] 
 then
+  echo "You should provide the input file as the first argument!"
+elif [[ ! -f $input_file ]] 
   echo "The input file $input_file does not exist!"
   exit 1
 fi
