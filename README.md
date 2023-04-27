@@ -2,6 +2,28 @@
 
 eBash (Extended Bash) is a Bash preprocessor adding various arithmetic additions and shortcuts.
 
+## Quick Start
+
+1. Download the script and give it execution rights: 
+```
+chmod +x ./ebash.sh
+```
+
+2. Write a Bash script using additional eBash syntax and give it an extension of `.esh`: 
+
+_test.esh_
+```
+read -p "Please enter the circle radius: " radius 
+echo "Area = ${{3.14*$radius^2}}"
+$radius++ 
+echo "If you increment the radius, the area would be = ${{3.14*$radius^2}}" 
+``` 
+
+3. Then execute the script using `ebash.sh`: 
+```
+./ebash.sh test.esh
+```
+
 ## Docs
 
 ### General 
@@ -65,3 +87,4 @@ And outputs `The result is 3.75`
 - [ ] transpiling to a file 
 - [ ] specifying the output file path 
 - [ ] add more info to the docs 
+- [ ] add support for the PI constant
