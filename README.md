@@ -31,23 +31,27 @@ And outputs `i = 2`
 #### Arithmetic operators syntax
 
 Example: 
-  a=${{ 2.5 * 6 + cos(0) }} # 15 
-  b=${{ 2^2 }} # 4 
-  echo "The result is ${{ $a / $b }}"  
+```
+a=${{ 2.5 * 6 + cos(0) }} # 15 
+b=${{ 2^2 }} # 4 
+echo "The result is ${{ $a / $b }}" 
+```
 
-Transpiles to: 
-  a=$(bc<<<" 2.5 * 6 + cos(0) ") # 15 
-  b=$(bc<<<" 2^2 ") # 4 
-  echo "The result is $(bc<<<" $a / $b ")" 
+Transpiles to:
+```
+a=$(bc<<<" 2.5 * 6 + cos(0) ") # 15 
+b=$(bc<<<" 2^2 ") # 4 
+echo "The result is $(bc<<<" $a / $b ")" 
+```
 
 And outputs `The result is 3.75`
 
 ## TODO
 
-- [] increment operator `$i++`
-- [] complex arithmetic operators syntax `${{ 3^2 / 5 * sin(3.14) }}`
-- [] complex arithmetic inequalities `$?{{5/3 >= 2}}`
-- [] directly executing the provided .esh file 
-- [] transpiling to a file 
-- [] specifying the output file path 
-- [] add more info to the docs 
+- [ ] increment operator `$i++`
+- [ ] complex arithmetic operators syntax `${{ 3^2 / 5 * sin(3.14) }}`
+- [ ] complex arithmetic inequalities `$?{{5/3 >= 2}}`
+- [ ] directly executing the provided .esh file 
+- [ ] transpiling to a file 
+- [ ] specifying the output file path 
+- [ ] add more info to the docs 
