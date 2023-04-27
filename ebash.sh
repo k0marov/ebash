@@ -10,10 +10,21 @@ input_file=$1
 if [[ -z $input_file ]] 
 then
   echo "You should provide the input file as the first argument!"
+  exit 1 
 elif [[ ! -f $input_file ]] 
 then 
   echo "The input file $input_file does not exist!"
   exit 1
 fi
 
-echo "$(transpile $input_file)" | bash 
+code=`transpile $input_file`
+
+output_file=$2 
+
+if [[ -z $output_file ]] 
+then
+  echo "$code" | bash 
+else 
+  echo "$code" > $output_file 
+fi
+

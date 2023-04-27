@@ -84,8 +84,8 @@ And outputs `The result is 3.75`
 - [x] increment operator `$i++`
 - [ ] complex arithmetic inequalities `$?{{5/3 >= 2}}`
 - [x] directly executing the provided .esh file 
-- [ ] transpiling to a file 
-- [ ] specifying the output file path 
+- [x] transpiling to a file 
+- [x] specifying the output file path 
 - [x] validating the output file path
 - [ ] add more info to the docs 
 - [ ] add support for the PI constant
