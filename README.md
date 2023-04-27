@@ -83,7 +83,7 @@ And outputs `The result is 3.75`
 
 - [x] increment operator `$i++`
 - [x] complex arithmetic expressions `${{5/3 + 3^2 + sin(0)}}`
-- [ ] complex arithmetic inequalities `$?{{5/3 >= 2}}`
+- [x] complex arithmetic inequalities `$?{{5/3 >= 2}}`
 - [x] directly executing the provided .esh file 
 - [x] transpiling to a file 
 - [x] specifying the output file path 
