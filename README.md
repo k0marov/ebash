@@ -15,22 +15,28 @@ It also has an option to immediately execute the provided .esh file.
 ### Features 
 
 #### Increment operator 
-
+_increment.esh_
 Example: 
-  i=1
-  $i++
-  echo "i = $i" 
+```
+i=1
+$i++
+echo "i = $i" 
+```
 
-Transpiles to: 
-  i=1
-  i=$(($i+1))
-  echo "i = $i" 
+Transpiles to:
+_increment.sh_
+```
+i=1
+i=$(($i+1))
+echo "i = $i" 
+```
 
 And outputs `i = 2`
 
 #### Arithmetic operators syntax
 
 Example: 
+_arithmetic.esh_
 ```
 a=${{ 2.5 * 6 + cos(0) }} # 15 
 b=${{ 2^2 }} # 4 
@@ -38,6 +44,7 @@ echo "The result is ${{ $a / $b }}"
 ```
 
 Transpiles to:
+_arithmetic.sh_
 ```
 a=$(bc<<<" 2.5 * 6 + cos(0) ") # 15 
 b=$(bc<<<" 2^2 ") # 4 
