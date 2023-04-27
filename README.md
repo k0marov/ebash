@@ -81,10 +81,12 @@ And outputs `The result is 3.75`
 
 ## TODO
 
-- [ ] increment operator `$i++`
+- [x] increment operator `$i++`
 - [ ] complex arithmetic inequalities `$?{{5/3 >= 2}}`
-- [ ] directly executing the provided .esh file 
+- [x] directly executing the provided .esh file 
 - [ ] transpiling to a file 
 - [ ] specifying the output file path 
+- [x] validating the output file path
 - [ ] add more info to the docs 
 - [ ] add support for the PI constant
+- [x] validation of the input file argument 

@@ -5,4 +5,12 @@ function transpile {
 	  | sed -E 's/\$(.\w)\+\+/\1=\$(( \$\1+1 ))/' # increment operator
 }
 
-echo $(transpile $1) | bash 
+input_file=$1
+
+if [[ ! -f $input_file ]] 
+then
+  echo "The input file $input_file does not exist!"
+  exit 1
+fi
+
+echo $(transpile $input_file) | bash 
