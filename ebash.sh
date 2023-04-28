@@ -25,7 +25,7 @@ output_file=$2
 
 if [[ -z $output_file ]] 
 then
-  echo "$code" | bash 
+  eval "$code"
 else 
   echo "$code" > $output_file 
 fi
