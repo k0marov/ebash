@@ -1,6 +1,6 @@
 # ebash
 
-eBash (Extended Bash) is a Bash preprocessor adding various arithmetic additions and shortcuts.
+eBash (Extended Bash) is a simple Bash preprocessor adding various arithmetic additions and shortcuts.
 
 ## Quick Start
 
@@ -14,9 +14,11 @@ chmod +x ./ebash.sh
 _test.esh_
 ```
 read -p "Please enter the circle radius: " radius 
-echo "Area = ${{3.14*$radius^2}}"
-$radius++ 
-echo "If you increment the radius, the area would be = ${{3.14*$radius^2}}" 
+echo "Area = ${{pi*$radius^2}}" # syntax for math, pi is a special keyword
+$radius++ # the increment operator
+echo "If you increment the radius, the area would be = ${{pi*$radius^2}}"
+# syntax for math conditionals 
+[[ $?{{ $radius > 3.5 }} ]] && echo "New radius is greather than 3.5" 
 ``` 
 
 3. Then execute the script using `ebash.sh`: 
@@ -30,54 +32,62 @@ echo "If you increment the radius, the area would be = ${{3.14*$radius^2}}"
 
 The script works as a preprocessor that transpiles .esh files to Bash-executable .sh files. 
 
-It also has an option to immediately execute the provided .esh file. 
-
 .esh files support special syntax for complex arithmetic operations using [bc](https://www.gnu.org/software/bc/manual/html_mono/bc.html). 
+
+There are three ways of using ebash: 
+1. Directly executing .esh files: 
+```
+./ebash.sh test.esh 
+```
+2. Transpiling .esh files into regular .sh files: 
+```
+./ebash.sh test.esh test.sh 
+```
+3. Natively executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). For example, `#!/usr/bin/ebash`. 
+```
+chmod +x test.esh 
+./test.esh 
+```
+_You need to copy ebash.sh into /usr/bin/ebash (or the path of your choice)_
 
 ### Features 
 
-#### Increment operator 
+#### Increment Operator 
 Example: 
 
-_increment.esh_
 ```
 i=1
 $i++
 echo "i = $i" 
 ```
 
-Transpiles to:
+Outputs `i = 2`
 
-_increment.sh_
-```
-i=1
-i=$(($i+1))
-echo "i = $i" 
-```
-
-And outputs `i = 2`
-
-#### Arithmetic operators syntax
+#### Arithmetic Expressions 
 
 Example:
 
-_arithmetic.esh_
 ```
 a=${{ 2.5 * 6 + cos(0) }} # 15 
 b=${{ 2^2 }} # 4 
 echo "The result is ${{ $a / $b }}" 
 ```
 
-Transpiles to:
+Outputs `The result is 3.75`
 
-_arithmetic.sh_
-```
-a=$(bc<<<" 2.5 * 6 + cos(0) ") # 15 
-b=$(bc<<<" 2^2 ") # 4 
-echo "The result is $(bc<<<" $a / $b ")" 
+
+#### Arithmetic Conditional Expressions 
+
+Example:
+
 ```
 
-And outputs `The result is 3.75`
+a=${{ 2.5 * 6 + cos(0) }} # 15 
+b=${{ 2^2 }} # 4 
+echo "The result is ${{ $a / $b }}" 
+```
+
+Outputs `The result is 3.75`
 
 ## TODO
 
@@ -88,7 +98,7 @@ And outputs `The result is 3.75`
 - [x] transpiling to a file 
 - [x] specifying the output file path 
 - [x] validating the output file path
-- [ ] add more info to the docs 
+- [x] add more info to the docs 
 - [x] add support for the PI constant
 - [x] validation of the input file argument 
 - [x] support for running with shebang 
