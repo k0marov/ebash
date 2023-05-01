@@ -91,3 +91,6 @@ And outputs `The result is 3.75`
 - [ ] add more info to the docs 
 - [ ] add support for the PI constant
 - [x] validation of the input file argument 
+- [ ] support for running with shebang 
+- [ ] changing the shebang for the output file
+- [ ] checking if the output file already exists
