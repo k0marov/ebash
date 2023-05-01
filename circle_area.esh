@@ -1,3 +1,0 @@
-read -p "Enter radius: " r
-area=${{pi*$r^2}}
-echo "Area = $area" 
