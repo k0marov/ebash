@@ -1,0 +1,4 @@
+#!/Users/roshi/Desktop/study/code/intro_to_code/ebash/ebash.sh
+read -p "Enter radius: " r
+area=${{pi*$r^2}}
+echo "Area = $area" 

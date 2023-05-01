@@ -1,11 +1,13 @@
 #!/bin/bash 
 
 function transpile {
-  echo "$(cat $1)" \
-	  | sed -E 's/\$([a-zA-Z_][a-zA-Z_0-9]*)\+\+/\1=\$(( \$\1+1 ))/' \
-	  | sed -E 's/\${{(.*)}}/`bc -l -e "pi=a(1)*4;\1"`/' \
-	  | sed -E 's/\$\?{{(.*)}}/`bc -l -e "pi=a(1)*4;\1"` == "1"/' 
+  echo "$(cat $1)" | 
+	  sed -E 's/^#!(.*)/#!\/bin\/bash/' | # changing the shebang 
+	  sed -E 's/\$([a-zA-Z_][a-zA-Z_0-9]*)\+\+/\1=\$(( \$\1+1 ))/' | # the increment operator
+	  sed -E 's/\${{(.*)}}/`bc -q -l -e "pi=a(1)*4;\1"`/' | # math expressions 
+	  sed -E 's/\$\?{{(.*)}}/`bc -q -l -e "pi=a(1)*4;\1"` == "1"/' # math inequalities
 }
+
 
 input_file=$1
 
@@ -27,6 +29,12 @@ if [[ -z $output_file ]]
 then
   eval "$code"
 else 
+  if [[ -e $output_file ]] 
+  then
+    echo "The output file $output_file already exists!" 
+    read -p "Do you want to overwrite $output_file? (y/n): "
+    [[ ! $REPLY =~ ^[Yy](es)?$ ]] && echo "Aborting..." && exit 1
+  fi
   echo "$code" > $output_file 
 fi
 

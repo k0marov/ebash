@@ -89,8 +89,8 @@ And outputs `The result is 3.75`
 - [x] specifying the output file path 
 - [x] validating the output file path
 - [ ] add more info to the docs 
-- [ ] add support for the PI constant
+- [x] add support for the PI constant
 - [x] validation of the input file argument 
-- [ ] support for running with shebang 
-- [ ] changing the shebang for the output file
-- [ ] checking if the output file already exists
+- [x] support for running with shebang 
+- [x] changing the shebang for the output file
+- [x] checking if the output file already exists
