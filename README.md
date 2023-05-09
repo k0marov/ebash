@@ -1,6 +1,6 @@
 # ebash
 
-eBash (Extended Bash) is a simple Bash preprocessor adding various arithmetic additions and shortcuts.
+eBash (Extended Bash) is a simple Bash preprocessor adding syntactic sugar and math expressions.
 
 ## Quick Start
 
@@ -13,12 +13,15 @@ chmod +x ./ebash.sh
 
 _test.esh_
 ```
+function area(radius) { # named function arguments
+	echo "${{pi*$radius^2}}" # syntax for math, pi is a special keyword
+}
 read -p "Please enter the circle radius: " radius 
-echo "Area = ${{pi*$radius^2}}" # syntax for math, pi is a special keyword
+echo "Area = `area $radius`" 
 $radius++ # the increment operator
-echo "If you increment the radius, the area would be = ${{pi*$radius^2}}"
+echo "If you increment the radius, the area would be = `area $radius`"
 # syntax for math conditionals 
-[[ $?{{ $radius > 3.5 }} ]] && echo "New radius is greather than 3.5" 
+[[ $?{{ $radius > 3.5 }} ]] && echo "New radius is greater than 3.5" 
 ``` 
 
 3. Then execute the script using `ebash.sh`: 
@@ -43,16 +46,20 @@ There are three ways of using ebash:
 ```
 ./ebash.sh test.esh test.sh 
 ```
-3. Natively executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). For example, `#!/usr/bin/ebash`. 
+3. Natively executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). 
+
+For example, `#!/usr/bin/ebash`. 
+
 ```
 chmod +x test.esh 
 ./test.esh 
 ```
-_You need to copy ebash.sh into /usr/bin/ebash (or the path of your choice)_
+_You need to copy ebash.sh into `/usr/bin/ebash` (or the path of your choice)_
 
 ### Features 
 
 #### Increment Operator 
+
 Example: 
 
 ```
@@ -81,13 +88,24 @@ Outputs `The result is 3.75`
 Example:
 
 ```
-
 a=${{ 2.5 * 6 + cos(0) }} # 15 
 b=${{ 2^2 }} # 4 
 echo "The result is ${{ $a / $b }}" 
 ```
 
 Outputs `The result is 3.75`
+
+
+#### Named Function Arguments
+
+```
+function show_time(hours, minutes) {
+	echo "The time is $hours:$minutes."
+}
+show_time 12 30
+```
+
+Outputs `The time is 12:30.`
 
 ## TODO
 
@@ -104,4 +122,5 @@ Outputs `The result is 3.75`
 - [x] support for running with shebang 
 - [x] changing the shebang for the output file
 - [x] checking if the output file already exists
-- [ ] add support for named function arguments 
+- [x] add support for named function arguments 
+- [ ] tests 
