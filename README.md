@@ -104,3 +104,4 @@ Outputs `The result is 3.75`
 - [x] support for running with shebang 
 - [x] changing the shebang for the output file
 - [x] checking if the output file already exists
+- [ ] add support for named function arguments 
