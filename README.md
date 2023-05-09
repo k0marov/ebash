@@ -1,6 +1,6 @@
 # ebash
 
-eBash (Extended Bash) is a simple Bash preprocessor adding syntactic sugar and math expressions.
+eBash (Extended Bash) is a simple Bash preprocessor adding some syntactic sugar and math expressions.
 
 ## Quick Start
 
@@ -14,7 +14,7 @@ chmod +x ./ebash.sh
 _test.esh_
 ```
 function area(radius) { # named function arguments
-	echo "${{pi*$radius^2}}" # syntax for math, pi is a special keyword
+	echo "${{pi*$radius^2}}" # syntax for math, pi is a preset constant
 }
 read -p "Please enter the circle radius: " radius 
 echo "Area = `area $radius`" 
@@ -46,9 +46,7 @@ There are three ways of using ebash:
 ```
 ./ebash.sh test.esh test.sh 
 ```
-3. Natively executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). 
-
-For example, `#!/usr/bin/ebash`. 
+3. Directly executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). For example, `#!/usr/bin/ebash`. 
 
 ```
 chmod +x test.esh 
@@ -75,7 +73,7 @@ Outputs `i = 2`
 Example:
 
 ```
-a=${{ 2.5 * 6 + cos(0) }} # 15 
+a=${{ 2.5 * 6 + sin(0) }} # 15 
 b=${{ 2^2 }} # 4 
 echo "The result is ${{ $a / $b }}" 
 ```
@@ -88,12 +86,11 @@ Outputs `The result is 3.75`
 Example:
 
 ```
-a=${{ 2.5 * 6 + cos(0) }} # 15 
-b=${{ 2^2 }} # 4 
-echo "The result is ${{ $a / $b }}" 
+[[ $?{{sin(pi/4) > 1/2}} ]] && echo "Sine of pi/4 is greater than 0.5" 
+[[ $?{{pi > 4}} ]] && echo "Pi is greater than 4"
 ```
 
-Outputs `The result is 3.75`
+Outputs `Sine of pi/4 is greater than 0.5`
 
 
 #### Named Function Arguments
