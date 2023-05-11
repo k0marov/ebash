@@ -5,14 +5,14 @@ eBash (Extended Bash) is a simple Bash preprocessor adding some syntactic sugar 
 ## Quick Start
 
 1. Download the script and give it execution rights: 
-```
+```sh
 chmod +x ./ebash.sh
 ```
 
 2. Write a Bash script using additional eBash syntax and give it an extension of `.esh`: 
 
 _test.esh_
-```
+```sh
 function area(radius) { # named function arguments
 	echo "${{pi*$radius^2}}" # syntax for math, pi is a preset constant
 }
@@ -25,7 +25,7 @@ echo "If you increment the radius, the area would be = `area $radius`"
 ``` 
 
 3. Then execute the script using `ebash.sh`: 
-```
+```sh
 ./ebash.sh test.esh
 ```
 
@@ -39,16 +39,16 @@ The script works as a preprocessor that transpiles .esh files to Bash-executable
 
 There are three ways of using ebash: 
 1. Directly executing .esh files: 
-```
+```sh
 ./ebash.sh test.esh 
 ```
 2. Transpiling .esh files into regular .sh files: 
-```
+```sh
 ./ebash.sh test.esh test.sh 
 ```
 3. Directly executing .esh files by using a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix). For example, `#!/usr/bin/ebash`. 
 
-```
+```sh
 chmod +x test.esh 
 ./test.esh 
 ```
@@ -60,7 +60,7 @@ _You need to copy ebash.sh into `/usr/bin/ebash` (or the path of your choice)_
 
 Example: 
 
-```
+```sh
 i=1
 $i++
 echo "i = $i" 
@@ -72,7 +72,7 @@ Outputs `i = 2`
 
 Example:
 
-```
+```sh
 a=${{ 2.5 * 6 + sin(0) }} # 15 
 b=${{ 2^2 }} # 4 
 echo "The result is ${{ $a / $b }}" 
@@ -85,7 +85,7 @@ Outputs `The result is 3.75`
 
 Example:
 
-```
+```sh
 [[ $?{{sin(pi/4) > 1/2}} ]] && echo "Sine of pi/4 is greater than 0.5" 
 [[ $?{{pi > 4}} ]] && echo "Pi is greater than 4"
 ```
@@ -95,7 +95,7 @@ Outputs `Sine of pi/4 is greater than 0.5`
 
 #### Named Function Arguments
 
-```
+```sh
 function show_time(hours, minutes) {
 	echo "The time is $hours:$minutes."
 }
