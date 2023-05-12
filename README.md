@@ -73,7 +73,7 @@ Outputs `i = 2`
 Example:
 
 ```sh
-a=${{ 2.5 * 6 + sin(0) }} # 15 
+a=${{ 2.5 * 6 + s(0) }} # 15 
 b=${{ 2^2 }} # 4 
 echo "The result is ${{ $a / $b }}" 
 ```
@@ -86,7 +86,7 @@ Outputs `The result is 3.75`
 Example:
 
 ```sh
-[[ $?{{sin(pi/4) > 1/2}} ]] && echo "Sine of pi/4 is greater than 0.5" 
+[[ $?{{s(pi/4) > 1/2}} ]] && echo "Sine of pi/4 is greater than 0.5" 
 [[ $?{{pi > 4}} ]] && echo "Pi is greater than 4"
 ```
 
