@@ -18,8 +18,8 @@ function transpile {
 	  ' | # support for named function arguments
 	  sed -E 's/^#!(.*)/#!\/bin\/bash/' | # changing the shebang 
 	  sed -E 's/\$([a-zA-Z_][a-zA-Z_0-9]*)\+\+/\1=\$(( \$\1+1 ))/' | # the increment operator
-	  sed -E 's/\$\{\{(.*)\}\}/`bc -q -l -e "pi=a(1)*4;\1"`/' | # math expressions 
-	  sed -E 's/\$\?\{\{(.*)\}\}/`bc -q -l -e "pi=a(1)*4;\1"` == "1"/' # math conditionals
+	  sed -E 's/\$\{\{(.*)\}\}/`bc -q -l <<< "pi=a(1)*4;\1"`/' | # math expressions 
+	  sed -E 's/\$\?\{\{(.*)\}\}/`bc -q -l <<< "pi=a(1)*4;\1"` == "1"/' # math conditionals
 }
 
 
