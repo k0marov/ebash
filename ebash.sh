@@ -2,7 +2,20 @@
 
 function transpile {
   echo "$(cat $1)" | 
-	  awk -f "function_args.awk" | # support for named function arguments
+	  awk '
+	      /\ *function.*\(.*\)/ { match($0, /\(.*\)/);
+		      print substr($0, 0, RSTART-1) " {";
+		      n = split(substr($0, RSTART+1, RLENGTH-2), args, ",");
+		      printf "\t"
+		      for (i=1; i<=n; i++) {
+			      gsub(/^\ */, "", args[i]);
+			      gsub(/\ *$/, "", args[i]);
+			      printf args[i] "=$" i ";"; 
+		      }
+		      printf "\n";
+		      next;
+	      } 1
+	  ' | # support for named function arguments
 	  sed -E 's/^#!(.*)/#!\/bin\/bash/' | # changing the shebang 
 	  sed -E 's/\$([a-zA-Z_][a-zA-Z_0-9]*)\+\+/\1=\$(( \$\1+1 ))/' | # the increment operator
 	  sed -E 's/\$\{\{(.*)\}\}/`bc -q -l -e "pi=a(1)*4;\1"`/' | # math expressions 
